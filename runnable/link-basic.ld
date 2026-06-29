@@ -16,6 +16,11 @@ SECTIONS {
 	.stack  : { . += 4K;    } > ram
 	.bss    : { *(.bss*)    } > ram
 	.data   : { *(.data*)   } > ram AT > flash
+	.heap   : {
+		__heap_begin = .;
+		. = ORIGIN(ram) + LENGTH(ram);
+		__heap_end = .;
+	}
 
 	/DISCARD/ : {
 		*(.ARM*)
